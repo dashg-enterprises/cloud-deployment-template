@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-    source = "git::https://github.com/dashg-enterprises/cloud-infrastructure.git//resources/aws/environment?ref=main" // should point to a particular project repo
+    source = "git::https://github.com/dashg-enterprises/cloud-infrastructure.git//resources/aws/cloudscape?ref=main" // should point to a particular project repo
 }
 
 inputs = {

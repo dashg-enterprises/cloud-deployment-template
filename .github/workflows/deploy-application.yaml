@@ -18,11 +18,7 @@ on:
         required: true
         type: choice
         options:
-          - lambda-boilerplate
-          - lambda-boilerplate-demonstration
-          - example-context
-          - example-website
-          - brandy-resume
+          - main-site
       command:
         description: "The command to run"
         required: false

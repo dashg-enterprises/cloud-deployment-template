@@ -1,0 +1,1 @@
+This is where the terragrunt.hcl file should sit to deploy a particular application (e.g. example-app) to the given environment, in this case, dev.

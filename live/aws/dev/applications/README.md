@@ -1,0 +1,1 @@
+Individual applications/projects should each be placed under their own folder here.

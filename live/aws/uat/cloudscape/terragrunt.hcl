@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-    source = "git::https://github.com/dashg-enterprises/cloud-infrastructure.git//resources/aws/cloudscape?ref=main"
+    source = "git::https://github.com/dashg-enterprises/cloud-infrastructure.git//iac/aws/cloudscape?ref=main"
 }
 
 inputs = {

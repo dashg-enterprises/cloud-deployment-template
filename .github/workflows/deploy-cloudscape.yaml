@@ -1,5 +1,5 @@
 name: CD Step - Deploy Cloudscape to AWS
-run-name: Execute ${{ inputs.command }} for ${{ inputs.environment || 'dev' }} environment
+run-name: Execute ${{ inputs.command }} for ${{ inputs.environment || 'dev' }} cloudscape
 
 on:
   workflow_dispatch:
@@ -39,7 +39,7 @@ jobs:
     # if: ${{ github.event.pull_request.merged }}
     name: Deploy
     runs-on: ubuntu-latest
-    environment: dev
+    environment: ${{ inputs.environment }}
 
     steps:
       - name: Checkout

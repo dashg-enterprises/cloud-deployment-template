@@ -1,15 +1,18 @@
-name: CD Step - Deploy Initialization to AWS
-run-name: Execute ${{ inputs.command }} for initialization of ${{ inputs.application }}
+name: CD Step - Deploy Cloudscape to AWS
+run-name: Execute ${{ inputs.command }} for entire ${{ inputs.environment || 'dev' }} environment
 
 on:
   workflow_dispatch:
     inputs:
-      application:
-        description: "The application to initialize"
+      environment:
+        description: "The environment to deploy"
         required: true
+        default: "dev"
         type: choice
         options:
-          - example-app
+          - dev
+          - uat
+          - prod
       command:
         description: "The command to run"
         required: false
@@ -27,16 +30,16 @@ concurrency: one-deploy-at-a-time
 
 env:
   AWS_REGION: us-east-1
-  S3_REPOSITORY: lambdaboilerplate-builds
   TF_VERSION: "1.9.3"
   TG_VERSION: "0.63.6"
-  TG_DIR: "live/aws/_initializations/${{ inputs.application }}"
+  TG_DIR: "live/aws/${{ inputs.environment }}"
 
 jobs:
   deploy:
     # if: ${{ github.event.pull_request.merged }}
     name: Deploy
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
 
     steps:
       - name: Checkout
@@ -61,4 +64,4 @@ jobs:
           TF_VERSION: ${{ env.TF_VERSION }}
           TG_VERSION: ${{ env.TG_VERSION }}
           tg_dir: "${{ env.TG_DIR }}"
-          tg_command: "${{ inputs.command }}"
+          tg_command: "run-all ${{ inputs.command }}"
